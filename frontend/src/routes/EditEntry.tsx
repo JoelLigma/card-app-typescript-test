@@ -2,7 +2,6 @@ import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Entry, EntryContextType } from "../@types/context";
 import { EntryContext } from "../utilities/globalContext";
-import { ThemeContext } from "../utilities/themeContext";
 
 export default function EditEntry() {
   const { id } = useParams();
@@ -10,8 +9,6 @@ export default function EditEntry() {
 
   const { updateEntry, entries } = useContext(EntryContext) as EntryContextType;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
-
-  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const entry = entries.filter((entry) => entry.id == id)[0];
@@ -27,13 +24,9 @@ export default function EditEntry() {
     updateEntry(id as string, newEntry);
   };
   return (
-    <section
-      className={`flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md text-black ${
-        theme === "dark" ? "bg-gray-600" : "bg-gray-300"
-      }`}
-    >
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md text-black bg-gray-300 dark:bg-gray-600">
       <input
-        className={`p-3 rounded-md ${theme === "dark" ? "bg-gray-200" : ""}`}
+        className="p-3 rounded-md dark:bg-gray-200"
         type="text"
         placeholder="Title"
         name="title"
@@ -41,14 +34,14 @@ export default function EditEntry() {
         onChange={handleInputChange}
       />
       <textarea
-        className={`p-3 rounded-md ${theme === "dark" ? "bg-gray-200" : ""}`}
+        className="p-3 rounded-md dark:bg-gray-200"
         placeholder="Description"
         name="description"
         value={newEntry.description}
         onChange={handleInputChange}
       />
       <input
-        className={`p-3 rounded-md ${theme === "dark" ? "bg-gray-200" : ""}`}
+        className="p-3 rounded-md dark:bg-gray-200"
         type="date"
         name="created_at"
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}

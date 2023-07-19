@@ -9,15 +9,21 @@ import { getOSDefault } from "./utilities/helpers";
 import { ThemeContext } from "./utilities/themeContext";
 
 export default function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(getOSDefault());
 
   useEffect(() => {
     const selectedPreference = localStorage.getItem("theme");
-    setTheme(selectedPreference ? selectedPreference : getOSDefault());
-  }, []);
+    const newState = selectedPreference || getOSDefault();
+
+    setTheme(newState);
+
+    newState === "dark"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+  }, [theme]);
 
   return (
-    <section className={`${theme}`}>
+    <section className="h-screen dark:bg-darkModeBg dark:text-white dark:text-opacity-80">
       <Router>
         <EntryProvider>
           <ThemeContext.Provider value={{ theme, setTheme }}>

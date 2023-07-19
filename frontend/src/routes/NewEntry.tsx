@@ -17,9 +17,9 @@ export default function NewEntry() {
     setNewEntry(emptyEntry);
   };
   return (
-    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 bg-gray-300 p-8 rounded-md text-black">
+    <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md text-black  bg-gray-300 dark:bg-gray-600">
       <input
-        className="p-3 rounded-md"
+        className="p-3 rounded-md dark:bg-gray-200"
         type="text"
         placeholder="Title"
         name="title"
@@ -27,14 +27,14 @@ export default function NewEntry() {
         onChange={handleInputChange}
       />
       <textarea
-        className="p-3 rounded-md"
+        className="p-3 rounded-md dark:bg-gray-200"
         placeholder="Description"
         name="description"
         value={newEntry.description}
         onChange={handleInputChange}
       />
       <input
-        className="p-3 rounded-md"
+        className="p-3 rounded-md dark:bg-gray-200"
         type="date"
         name="created_at"
         value={new Date(newEntry.created_at).toISOString().split("T")[0]}

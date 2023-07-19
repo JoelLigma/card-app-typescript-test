@@ -2,11 +2,9 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Entry, EntryContextType } from "../@types/context";
 import { EntryContext } from "../utilities/globalContext";
-import { ThemeContext } from "../utilities/themeContext";
 
 export default function AllEntries() {
   const { entries, deleteEntry } = useContext(EntryContext) as EntryContextType;
-  const { theme } = useContext(ThemeContext);
 
   let navigate = useNavigate();
   if (entries.length == 0) {
@@ -30,9 +28,7 @@ export default function AllEntries() {
           <div
             id={entry.id}
             key={index}
-            className={`shadow-md shadow-gray-500 m-3 p-4 rounded flex flex-col justify-between ${
-              theme === "dark" ? " bg-gray-600" : "bg-gray-300"
-            }`}
+            className="shadow-md shadow-gray-500 m-3 p-4 rounded flex flex-col justify-between bg-gray-300 dark:bg-gray-600"
           >
             <div className="flex justify-between items-center">
               <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
