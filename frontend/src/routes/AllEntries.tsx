@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Entry, EntryContextType } from "../@types/context";
@@ -21,6 +22,19 @@ export default function AllEntries() {
     );
   }
 
+  const formatDueDate = (scheduledDate: string) => {
+    const today = new Date().toISOString().split("T")[0];
+    const numDays = moment(scheduledDate.split("T")[0]).diff(today, "days");
+
+    if (numDays > 0) {
+      return `Due in ${numDays} day${numDays === 1 ? "" : "s"}`;
+    } else if (numDays === 0) {
+      return "Due today";
+    } else {
+      return `Due ${numDays * -1} day${numDays * -1 === 1 ? "" : "s"} ago`;
+    }
+  };
+
   return (
     <section className="grid grid-cols-2 md:grid-cols-4">
       {entries.map((entry: Entry, index: number) => {
@@ -32,6 +46,10 @@ export default function AllEntries() {
           >
             <div className="flex justify-between items-center">
               <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                {"Created on "}
+                <time>{`${moment(new Date(entry.created_at.toString())).format("MMMM Do, YYYY")}`}</time>
+              </p>
             </div>
             <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
             <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
@@ -54,7 +72,7 @@ export default function AllEntries() {
                 </button>
               </div>
               <time className="text-right text-sm md:text-base">
-                {new Date(entry.created_at.toString()).toLocaleDateString()}
+                {entry.scheduled_for ? formatDueDate(entry.scheduled_for.toString()) : "No due date"}
               </time>
             </section>
           </div>

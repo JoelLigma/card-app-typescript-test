@@ -3,19 +3,22 @@ import { Entry, EntryContextType } from "../@types/context";
 import { EntryContext } from "../utilities/globalContext";
 
 export default function NewEntry() {
-  const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
+  const emptyEntry: Entry = { title: "", description: "", created_at: new Date(), scheduled_for: new Date() };
   const { saveEntry } = useContext(EntryContext) as EntryContextType;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewEntry({
       ...newEntry,
       [event.target.name]: event.target.value,
     });
   };
+
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
   };
+
   return (
     <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-5 p-8 rounded-md text-black  bg-gray-300 dark:bg-gray-600">
       <input
@@ -36,8 +39,8 @@ export default function NewEntry() {
       <input
         className="p-3 rounded-md dark:bg-gray-200"
         type="date"
-        name="created_at"
-        value={new Date(newEntry.created_at).toISOString().split("T")[0]}
+        name="scheduled_for"
+        value={new Date(newEntry.scheduled_for).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
       <button
