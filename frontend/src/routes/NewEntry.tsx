@@ -15,8 +15,11 @@ export default function NewEntry() {
   };
 
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
-    saveEntry(newEntry);
-    setNewEntry(emptyEntry);
+    const isValid = newEntry.title !== "" && newEntry.description !== "";
+    if (isValid) {
+      saveEntry(newEntry);
+      setNewEntry(emptyEntry);
+    }
   };
 
   return (

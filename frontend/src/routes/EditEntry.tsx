@@ -23,7 +23,10 @@ export default function EditEntry() {
   };
 
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
-    updateEntry(id as string, newEntry);
+    const isValid = newEntry.title !== "" && newEntry.description !== "";
+    if (isValid) {
+      updateEntry(id as string, newEntry);
+    }
   };
 
   return (
