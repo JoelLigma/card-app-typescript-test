@@ -44,9 +44,9 @@ export default function AllEntries() {
             key={index}
             className="shadow-md shadow-gray-500 m-3 p-4 rounded flex flex-col justify-between bg-gray-300 dark:bg-gray-600"
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center flex-col sm:flex-row">
               <h1 className="font-bold text-sm md:text-lg">{entry.title}</h1>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
                 {"Created on "}
                 <time>{`${moment(new Date(entry.created_at.toString())).format("MMMM Do, YYYY")}`}</time>
               </p>
