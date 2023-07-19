@@ -7,7 +7,7 @@ import Dropdown from "./Dropdown";
 const ThemeButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const buttonClassNames = `flex items-center gap-1 absolute right-1 md:right-3 top-3 sm:top-2 font-medium rounded px-2 border border-transparent hover:border-gray-300 dark:hover:border-current`;
+  const buttonClassNames = `flex items-center gap-1 absolute right-3 top-3 sm:top-2 font-medium rounded px-2 border border-transparent hover:border-gray-300 dark:hover:border-current`;
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

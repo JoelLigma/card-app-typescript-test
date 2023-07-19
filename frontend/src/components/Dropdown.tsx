@@ -13,7 +13,7 @@ const Dropdown = ({ isOpen, setIsOpen }: Props) => {
   const { theme: selectedTheme, setTheme } = useContext(ThemeContext);
 
   const dropdownClassNames =
-    "absolute top-9 right-1 md:right-2 bg-white dark:bg-modalDarkBg flex flex-col gap-1 rounded  p-1.5 shadow-md font-medium";
+    "absolute top-10 sm:top-9 right-2 bg-white dark:bg-modalDarkBg flex flex-col gap-1 rounded  p-1.5 shadow-md font-medium";
   const labelClassNames = "cursor-pointer px-3 py-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-600";
 
   const clickHandler = (event: React.MouseEvent<HTMLInputElement>) => {
